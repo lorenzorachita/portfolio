@@ -1,6 +1,7 @@
 --------------------------------------------------------------------------------------------------------------------------------------------
 🎢 Portfolio Interactif | Lorenzo Rachita
-Bienvenue sur le dépôt de mon portfolio digital. Passionné par l'univers des parcs d'attractions et étudiant en Bachelor Communication, j'ai conçu ce site comme une expérience immersive mêlant storytelling, interactivité et compétences techniques.
+
+Bienvenue sur mon portfolio digital. Passionné par l'univers des parcs d'attractions et étudiant en Bachelor Communication, j'ai conçu ce site comme une expérience immersive mêlant storytelling, interactivité et compétences techniques.
 --------------------------------------------------------------------------------------------------------------------------------------------
 ✨ Concept & Design
 L'objectif de ce projet est de transformer la lecture d'un CV classique en une visite de parc à thèmes :
