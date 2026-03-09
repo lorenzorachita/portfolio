@@ -4,9 +4,9 @@ Bienvenue sur le dépôt de mon portfolio digital. Passionné par l'univers des 
 ✨ Concept & Design
 L'objectif de ce projet est de transformer la lecture d'un CV classique en une visite de parc à thèmes :
 
-Thématique Magique : Une direction artistique inspirée des univers Disney avec un curseur "étoile filante" et des effets visuels dynamiques.
+- Thématique Magique : Une direction artistique inspirée des univers Disney avec un curseur "étoile filante" et des effets visuels dynamiques.
 
-Mode Nuit Natif : Un design pensé pour le confort visuel, plongeant l'utilisateur dans une ambiance de parc au crépuscule.
+- Mode Nuit Natif : Un design pensé pour le confort visuel, plongeant l'utilisateur dans une ambiance de parc au crépuscule.
 
 Interactivité :
 
