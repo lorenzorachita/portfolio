@@ -4,17 +4,17 @@ Bienvenue sur le dépôt de mon portfolio digital. Passionné par l'univers des 
 ✨ Concept & Design
 L'objectif de ce projet est de transformer la lecture d'un CV classique en une visite de parc à thèmes :
 
-Thématique Magique : Une direction artistique inspirée des univers Disney et Nintendo avec un curseur "étoile filante" et des effets visuels dynamiques.
+Thématique Magique : Une direction artistique inspirée des univers Disney avec un curseur "étoile filante" et des effets visuels dynamiques.
 
 Mode Nuit Natif : Un design pensé pour le confort visuel, plongeant l'utilisateur dans une ambiance de parc au crépuscule.
 
 Interactivité :
 
-Competence Coaster : Un wagon de montagnes russes qui suit le mouvement de l'utilisateur.
+- Competence Coaster : Un wagon de montagnes russes qui suit le mouvement de l'utilisateur.
 
-Arcade Coaster : Un mini-jeu "Easter Egg" intégré pour tester la culture "fan de parcs" des visiteurs.
+- Arcade Coaster : Un mini-jeu "Easter Egg" intégré pour tester la culture "fan de parcs" des visiteurs.
 
-Timeline Animée : Un parcours académique et professionnel interactif.
+- Timeline Animée : Un parcours académique et professionnel interactif.
 
 🛠️ Technologies utilisées
 HTML5 : Structure sémantique du site.
