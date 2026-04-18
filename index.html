@@ -59,6 +59,8 @@
             pointer-events: none; z-index: 9999; box-shadow: 0 0 10px #ff9f43;
             animation: shoot 0.8s linear forwards;
         }
+
+
         @keyframes shoot { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0); opacity: 0; } }
 
         /* --- ÉTOILES SCINTILLANTES CSS --- */
@@ -77,6 +79,7 @@
         #scroll-progress {
             position: fixed; top: 0; left: 0; height: 4px; background: var(--primary); z-index: 2000; width: 0%;
         }
+
 
         /* --- NAVIGATION --- */
         nav { 
@@ -124,7 +127,7 @@
             align-items: center;
             justify-content: space-between;
             width: 100%; 
-            max-width: 1400px;
+            max-width: 1600px; /* Augmenté pour laisser plus de place */
             margin: 0 auto;
             position: relative; 
             z-index: 2; 
@@ -132,9 +135,10 @@
         }
 
         .hero-left { 
-            flex: 1.4; 
+            flex: 1.6; 
             z-index: 10;
-            padding-left: 20px;
+            padding-left: 0px; /* Décalé au max à gauche */
+            margin-left: -50px; /* Force le décalage à gauche */
         }
 
         .branding-wrapper {
@@ -145,26 +149,22 @@
         }
 
         .portrait-img { 
-            width: 400px; height: auto; 
+            width: 420px; height: auto; 
             transform: rotate(-8deg) translateY(40px);
             filter: drop-shadow(0 15px 30px rgba(0,0,0,0.8)); opacity: 0.95;
             transition: 0.5s ease;
-            margin-right: -60px; 
+            margin-right: -40px; 
             z-index: 1;
             filter: drop-shadow(0 0 20px rgba(108, 92, 231, 0.7)) 
                     drop-shadow(0 15px 30px rgba(0,0,0,0.6));
         }
-        .portrait-img:hover {
-            filter: drop-shadow(0 0 30px rgba(108, 92, 231, 0.9))
-                    drop-shadow(0 15px 30px rgba(0,0,0,0.6));
-        }
         
         /* --- TITRE --- */
-        .main-title {
-            font-size: clamp(2rem, 6.5vw, 5rem); 
+      .main-title {
+            font-size: clamp(2rem, 5.5vw, 4.8rem); /* Passé de 6.2rem à 4.8rem */
             font-family: 'Bungee', cursive;
-            line-height: 1.1;
-            margin-bottom: 20px;
+            line-height: 1.05;
+            margin-bottom: 15px;
             max-width: 900px;
             position: relative;
             z-index: 2;
@@ -172,45 +172,56 @@
             filter: drop-shadow(0 0 8px rgba(108, 92, 231, 0.8));
         }
 
-        .main-title span { 
-            display: inline-block; 
-            opacity: 0; 
-            transform: translateY(20px);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
-            cursor: pointer;
-            margin-right: 15px;
-        }
+.main-title span {
+    display: inline-block;
+    opacity: 0;
+    cursor: pointer;
+    margin-right: 15px;
+    /* On applique l'animation autoHoverZoom directement ici */
+    animation: autoHoverZoom 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
-        .main-title span:hover {
-            transform: translateY(-5px) scale(1.15) !important;
-            filter: drop-shadow(0 0 15px var(--primary));
-        }
+.main-title span:hover {
+    transform: translateY(-5px) scale(1.15) !important;
+    filter: drop-shadow(0 0 15px var(--primary));
+}
 
-        .main-title.reveal-ready span { 
-            animation: wordIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
-        }
+/* L'animation qui imite ton effet de survol au chargement */
+@keyframes autoHoverZoom {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.15); /* Le zoom "gonflement" */
+        filter: drop-shadow(0 0 15px var(--primary));
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1); /* Retour à la normale */
+        filter: drop-shadow(0 0 0px transparent);
+    }
+}
 
-        @keyframes wordIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
+/* Délais pour l'effet cascade (un mot après l'autre) */
+.main-title span:nth-child(1) { animation-delay: 0.3s; }
+.main-title span:nth-child(2) { animation-delay: 0.6s; }
+.main-title span:nth-child(3) { animation-delay: 0.9s; }
+.main-title span:nth-child(4) { animation-delay: 1.2s; }
 
-        .main-title span:nth-child(1) { animation-delay: 0.2s; }
-        .main-title span:nth-child(2) { animation-delay: 0.4s; }
-        .main-title span:nth-child(3) { animation-delay: 0.6s; }
-        .main-title span:nth-child(4) { animation-delay: 0.8s; }
-
-        .hero-description {
-            margin-top: 20px; 
-            font-size: 1.5rem; 
+   .hero-description {
+            margin-top: 15px; 
+            font-size: 1.25rem; /* Passé de 1.6rem à 1.25rem */
             line-height: 1.4; 
             opacity: 0.9;
             max-width: 700px; 
         }
 
         .hero-right { 
-            flex: 0.6; 
+            flex: 0.5; 
             position: relative; 
-            height: 500px; 
+            height: 600px; /* Augmenté pour l'espace vertical */
             perspective: 1000px;
         }
         
@@ -219,15 +230,18 @@
             50% { transform: translateY(-20px) rotate(1deg); }
         }
 
-        /* --- BLOCS DE TEXTE --- */
+        /* --- BLOCS DE TEXTE ACCUEIL --- */
+/* --- BLOCS DE TEXTE ACCUEIL --- */
+/* --- BLOCS DE TEXTE ACCUEIL AGRANDIS --- */
         .floating-card { 
             position: absolute; 
-            background: rgba(255, 255, 255, 0.05); 
+            background: rgba(26, 26, 46, 0.4); 
             backdrop-filter: blur(15px); 
-            border: 2px solid rgba(255,255,255,0.15); 
-            padding: 20px; 
+            border: 2px solid var(--primary); 
+            box-shadow: 0 0 15px var(--glow-violet); 
+            padding: 25px; /* Augmenté pour plus d'espace interne */
             border-radius: 20px; 
-            width: 280px; 
+            width: 350px; /* Augmenté de 320px à 350px */
             z-index: 10; 
             pointer-events: auto;
             will-change: transform, box-shadow;
@@ -237,10 +251,16 @@
                         border-color 0.5s ease,
                         box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
+        .floating-card p {
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
                 
-        .card-1 { top: 0%; right: 0%; }
-        .card-2 { bottom: 0%; right: 5%; }
-        .card-3 { top: 35%; right: -10%; }
+        /* Positions ajustées pour éviter tout chevauchement */
+        .card-1 { top: -20px; right: 20px; } 
+        .card-2 { top: 220px; right: -40px; animation-delay: -2s; }
+        .card-3 { bottom: -20px; right: 60px; animation-delay: -4s; }
         
         .floating-card:hover { 
             transform: scale(1.08) translateY(-15px) !important;
@@ -269,9 +289,10 @@
         @media (max-width: 992px) { 
             .cv-skills-grid { grid-template-columns: 1fr; } 
             .hero-container { flex-direction: column; text-align: center; }
+            .hero-left { margin-left: 0; }
             .branding-wrapper { flex-direction: column; gap: 20px; }
-            .hero-right { width: 100%; height: 400px; margin-top: 50px; }
-            .floating-card { position: relative; margin: 10px auto; right: auto; top: auto; bottom: auto; }
+            .hero-right { width: 100%; height: auto; margin-top: 50px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+            .floating-card { position: relative; right: auto; top: auto; bottom: auto; margin: 0 auto; }
             .portrait-img { margin-right: 0; transform: rotate(0); width: 280px; }
         }
 
@@ -427,11 +448,14 @@
             <div class="branding-wrapper">
                 <img src="photo-lorenzo.png" alt="Lorenzo" class="portrait-img">
                 <div>
-                    <h1 class="main-title">
-                        <span>LET'S</span> <span>MAKE</span> <span>IT</span> <span>VIRAL !</span>
-                    </h1>
+                   <h1 class="main-title">
+    <span>LET'S</span> 
+    <span>MAKE</span> 
+    <span style="margin-right: 25px;">IT</span> 
+    <span>VIRAL !</span>
+</h1>
                     <p class="hero-description">
-                        Je recherche un <strong>stage</strong> d'au moins 3 mois & une <strong>alternance</strong> 
+                        Je recherche un <strong>stage</strong> d'au moins <strong>3 mois</strong> & une <strong>alternance</strong> 
                         en Communication et/ou Marketing ! :)
                     </p>
                 </div>
@@ -440,15 +464,15 @@
         <div class="hero-right">
             <div class="floating-card card-1">
                 <h4>🚀 L'Instinct Viral</h4>
-                <p>+17 000 abonnés et plusieurs millions de vues cumulés sur mes réseaux. De ma première vidéo il y a 10 ans à aujourd'hui, j'analyse les codes pour transformer chaque contenu en opportunité d'engagement.</p>
+                <p><strong>+17 000 abonnés</strong> et plusieurs <strong>millions de vues</strong> cumulés sur mes réseaux. De ma première vidéo il y a <strong>10 ans</strong> à aujourd'hui, j'analyse les codes pour transformer chaque contenu en opportunité d'engagement.</p>
             </div>
             <div class="floating-card card-2">
-                <h4>🤝 Esprit d'Initiative</h4>
-                <p>Fondateur de 2 assos. Un projet promu avec l'UGC : +350 vidéos créées et 35k vues générées. Entreprendre, c'est essayer, parfois échouer, mais toujours apprendre.</p>
+                <h4>⚡ Créateur en Mouvement</h4>
+                <p><strong>Auto-entrepreneur</strong> et livreur atypique dans les rues de Marseille : je capture l'interaction réelle. Un stage de <strong>3 mois</strong> comme CM et une soif d'apprendre qui me propulse vers mon <strong>Master</strong>.</p>
             </div>
             <div class="floating-card card-3">
-                <h4>⚡ Créateur en Mouvement</h4>
-                <p>Auto-entrepreneur et livreur atypique dans les rues de Marseille : je capture l'interaction réelle. Un stage de 3 mois comme CM et une soif d'apprendre qui me propulse vers mon Master.</p>
+                <h4>🤝 Esprit d'Initiative</h4>
+                <p>Fondateur de <strong>2 assos</strong>. Un projet promu avec l'UGC : <strong>+350 vidéos</strong> créées et <strong>35k vues</strong> générées. Entreprendre, c'est essayer, parfois échouer, mais toujours apprendre.</p>
             </div>
         </div>
     </div>
