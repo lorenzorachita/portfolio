@@ -253,16 +253,16 @@
         /* --- REST DU STYLE --- */
         .focus-card {
             background: var(--white); border: 2px solid var(--primary); border-radius: 25px;
-            height: 300px; position: relative; overflow: hidden; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 320px; position: relative; overflow: hidden; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        .focus-content { text-align: center; padding: 30px; transition: transform 0.5s ease; }
-        .focus-card i { font-size: 3.5rem; color: var(--accent-orange); margin-bottom: 20px; display: block; }
+        .focus-content { text-align: center; padding: 20px; transition: transform 0.5s ease; width: 100%; }
+        .focus-card i { font-size: 3rem; color: var(--accent-orange); margin-bottom: 15px; display: block; }
         .focus-card h3 { font-family: 'Bungee'; font-size: 1.1rem; color: white; margin-bottom: 10px; }
         .focus-desc { max-height: 0; opacity: 0; transition: all 0.5s ease; overflow: hidden; }
-        .focus-desc p { font-size: 0.85rem; line-height: 1.5; color: #ccc; margin-top: 15px; }
-        .focus-card:hover { transform: translateY(-15px) scale(1.05); border-color: var(--accent-pink); background: rgba(108, 92, 231, 0.15); box-shadow: 0 20px 50px rgba(108, 92, 231, 0.4); }
-        .focus-card:hover .focus-desc { max-height: 150px; opacity: 1; }
+        .focus-desc p { font-size: 0.85rem; line-height: 1.5; color: #ccc; margin-top: 10px; }
+        .focus-card:hover { transform: translateY(-15px) scale(1.03); border-color: var(--accent-pink); background: rgba(108, 92, 231, 0.15); box-shadow: 0 20px 50px rgba(108, 92, 231, 0.4); }
+        .focus-card:hover .focus-desc { max-height: 200px; opacity: 1; }
         .focus-card:hover .focus-content { transform: translateY(-10px); }
 
         .cv-skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 100px 10%; align-items: start; }
@@ -414,7 +414,7 @@
     <ul class="nav-links">
         <li><a href="#about">Me concernant</a></li>
         <li><a href="#parcours">Parcours</a></li>
-        <li><a href="#projets">Espace Initiatives</a></li>
+        <li><a href="#projets">Terrain de jeu</a></li>
         <li><a href="#backstage">Compétences</a></li>
         <li><a href="#contact">Me contacter</a></li>
     </ul>
@@ -439,16 +439,16 @@
         </div>
         <div class="hero-right">
             <div class="floating-card card-1">
-                <h4>🚀 Viralité</h4>
-                <p>Expert en sourcing et veille de tendances TikTok/Reels pour maximiser l'engagement.</p>
+                <h4>🚀 L'Instinct Viral</h4>
+                <p>+17 000 abonnés et plusieurs millions de vues cumulés sur mes réseaux. De ma première vidéo il y a 10 ans à aujourd'hui, j'analyse les codes pour transformer chaque contenu en opportunité d'engagement.</p>
             </div>
             <div class="floating-card card-2">
-                <h4>🎬 Création</h4>
-                <p>Maîtrise de Premiere Pro et Photoshop pour des montages immersifs et percutants.</p>
+                <h4>🤝 Esprit d'Initiative</h4>
+                <p>Fondateur de 2 assos. Un projet promu avec l'UGC : +350 vidéos créées et 35k vues générées. Entreprendre, c'est essayer, parfois échouer, mais toujours apprendre.</p>
             </div>
             <div class="floating-card card-3">
-                <h4>✨ Magie</h4>
-                <p>Passionné par le storytelling et l'expérience client dans l'univers des parcs.</p>
+                <h4>⚡ Créateur en Mouvement</h4>
+                <p>Auto-entrepreneur et livreur atypique dans les rues de Marseille : je capture l'interaction réelle. Un stage de 3 mois comme CM et une soif d'apprendre qui me propulse vers mon Master.</p>
             </div>
         </div>
     </div>
@@ -478,50 +478,56 @@
         </div>
         <div class="timeline-item" data-reveal>
             <span class="timeline-date">Octobre 2024</span>
-            <span style="display:block; color:#888; font-size:0.8rem; margin-bottom:10px;">Premier projet</span>
-            <p>Réalisation d'une vidéo immersive sur les parcs.</p>
+            <span style="display:block; color:#888; font-size:0.8rem; margin-bottom:10px;">Premier projet scolaire</span>
+            <p>Réalisation d'une vidéo immersive sur les parcs d'attraction.</p>
             <a href="https://youtu.be/KVwjPx4q2Xk" target="_blank" rel="noopener" class="timeline-btn">Ma vidéo</a>
         </div>
         <div class="timeline-item" data-reveal>
             <span class="timeline-date">Juin 2025</span>
-            <span style="display:block; color:#888; font-size:0.8rem; margin-bottom:10px;">Stage CM</span>
-            <p>Community Manager : Stratégie réseaux sociaux chez RODELLE.</p>
+            <span style="display:block; color:#888; font-size:0.8rem; margin-bottom:10px;">Stage RODELLE</span>
+            <p>Community Manager : Création du compte et croissance de 0 à 1000+ abonnés. Sourcing/contact influenceurs.</p>
             <a href="https://www.instagram.com/rodellefrance/" target="_blank" rel="noopener" class="timeline-btn">RODELLE</a>
         </div>
         <div class="timeline-item" data-reveal>
             <span class="timeline-date">Octobre 2024</span>
-            <span style="display:block; color:#888; font-size:0.8rem; margin-bottom:10px;">Deuxième projet</span>
+            <span style="display:block; color:#888; font-size:0.8rem; margin-bottom:10px;">Deuxième projet scolaire</span>
             <p>Production d'un podcast sur Disneyland Paris.</p>
             <a href="https://www.youtube.com/watch?v=k8kka3aGeok" target="_blank" rel="noopener" class="timeline-btn">Mon podcast</a>
         </div>
         <div class="timeline-item" data-reveal>
             <span class="timeline-date">Janvier 2026</span>
-            <span style="display:block; color:#888; font-size:0.8rem; margin-bottom:10px;">Troisième projet</span>
-            <p>Articles : Nintendo, PGW, & Foire aux Santons.</p>
+            <span style="display:block; color:#888; font-size:0.8rem; margin-bottom:10px;">Troisième projet scolaire</span>
+            <p>Réalisation d'articles : Nintendo, PGW, & Foire aux Santons.</p>
             <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
-                <a href="#" target="_blank" rel="noopener" class="timeline-btn">Nintendo</a>
-                <a href="#" target="_blank" rel="noopener" class="timeline-btn">PGW</a>
-                <a href="#" target="_blank" rel="noopener" class="timeline-btn">Santons</a>
+                <a href="https://drive.google.com/file/d/1SkKvn13WPwwm0Od5VT9lQ9tHYpYhmZPy/view?usp=drive_link" target="_blank" rel="noopener" class="timeline-btn">Nintendo</a>
+                <a href="https://drive.google.com/file/d/1apcCVL9ynIqzbp6jEL1EFq8dhXA7qK_c/view?usp=drive_link" target="_blank" rel="noopener" class="timeline-btn">PGW</a>
+                <a href="https://drive.google.com/file/d/1siz_Jnb9FvEOq9hZ-MckRK4yPyicyWnJ/view?usp=drive_link" target="_blank" rel="noopener" class="timeline-btn">Santons</a>
             </div>
         </div>
         <div class="timeline-item" data-reveal>
             <span class="timeline-date">Courant 2027</span>
-            <span style="display:block; color:#888; font-size:0.8rem; margin-bottom:10px;">Master</span>
-            <p>Objectif Master Stratégie Marketing & Communication.</p>
+            <span style="display:block; color:#888; font-size:0.8rem; margin-bottom:10px;">ECS by mediaschool</span>
+            <p>Début du Master Stratégie Marketing & Communication.</p>
             <a href="https://ecole-ecs.com/formations/mastere-strategie-marketing-et-communication" target="_blank" rel="noopener" class="timeline-btn">Le master</a>
         </div>
     </div>
 </section>
 
 <section id="projets" style="padding: 100px 5%; background: rgba(255,255,255,0.02);">
-    <h2 style="text-align: center; font-family: 'Bungee'; margin-bottom: 60px;" data-reveal>Engagements & Entrepreneuriat</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1300px; margin: auto;">
+    <h2 style="text-align: center; font-family: 'Bungee'; margin-bottom: 60px;" data-reveal>Terrain de Jeu</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1450px; margin: auto;">
         <div class="focus-card" data-reveal>
             <div class="focus-content">
                 <i class="fas fa-paint-brush"></i>
                 <h3>Land Creation</h3>
                 <div class="focus-desc">
-                    <p>Direction artistique et communication globale. Création d'identités visuelles percutantes et gestion de projets événementiels.</p>
+             <p style="font-size: 0.85rem; line-height: 1.5; padding: 0 15px; text-align: center;">
+    <strong>Première asso</strong> (15 ans).<br>
+    <strong>DA & Production</strong> intégrale : logo et assets vidéo.<br><br>
+    
+    <strong>Stratégie UGC</strong> performante <strong>(+350 vidéos, +35k vues)</strong> et animation d'une communauté de 
+    <strong>1000 membres</strong> avec gestion de <strong>Giveaways</strong> partenaires.
+</p>
                 </div>
             </div>
         </div>
@@ -530,7 +536,13 @@
                 <i class="fas fa-gamepad"></i>
                 <h3>Phosea Esport</h3>
                 <div class="focus-desc">
-                    <p>Stratégie Social Media et sourcing de partenariats. Développement de la visibilité sur TikTok/Reels pour engager la communauté.</p>
+                    <p style="font-size: 0.85rem; line-height: 1.5; padding: 0 15px; text-align: center;">
+    <strong>Association événementielle</strong> basée à Marseille.<br><br>
+    
+    <strong>Organisation & Logistique :</strong> Réalisation d'événements compétitifs en <strong>présentiel</strong> (multigaming).<br><br>
+    
+    <strong>Succès opérationnel :</strong> Premier événement <strong>complet</strong> (50 participants).
+</p>
                 </div>
             </div>
         </div>
@@ -539,7 +551,13 @@
                 <i class="fas fa-rocket"></i>
                 <h3>Raider Express</h3>
                 <div class="focus-desc">
-                    <p>Auto-entreprise spécialisée en audiovisuel immersif. Pilotage de drone FPV et production de contenus dynamiques.</p>
+                    <p style="font-size: 0.85rem; line-height: 1.5; padding: 0 15px; text-align: center;">
+    <strong>Auto-entreprise</strong> dédiée à la création de contenu.<br><br>
+    
+    <strong>Concept & Tech :</strong> Capturer mon quotidien en <strong>POV immersif</strong>.<br><br>
+    
+    <strong>Objectif :</strong> Développer un média basé sur l'<strong>interaction humaine</strong> pour m'aider à financer mon parcours académique.
+</p>
                 </div>
             </div>
         </div>
@@ -548,7 +566,11 @@
                 <i class="fas fa-chart-line"></i>
                 <h3>Créateur de Contenu</h3>
                 <div class="focus-desc">
-                    <p>17 000 abonnés cumulés sur TikTok et 4 millions de vues. 10 ans d'expérience dans la création de contenu viral et authentique.</p>
+                    <p style="font-size: 0.85rem; line-height: 1.5; padding: 0 15px; text-align: center;">    
+    <strong>Performance chiffrée :</strong> Plus de <strong>17 000 abonnés cumulés</strong> sur TikTok et des <strong>millions de vues</strong> générées sur deux comptes distincts.<br><br>
+    
+    <strong>Savoir-faire :</strong> Maîtrise des algorithmes, de la <strong>viralité</strong> et du storytelling vidéo depuis 10 ans. Capacité à bâtir des communautés à partir de zéro.
+</p>
                 </div>
             </div>
         </div>
@@ -567,10 +589,10 @@
         <h2 style="font-family: 'Bungee'; margin-bottom: 30px; text-align: center;">Mes compétences</h2>
         <div class="coaster-track" id="coasterTrackArea">
             <div class="coaster-train" id="coasterTrain">🎢</div>
-            <div class="attr-item"><div class="attr-details"><h3>🎨 CRÉATION GRAPHIQUE</h3><p>Canva expert (RODELLE & Raider Express).</p></div></div>
+            <div class="attr-item"><div class="attr-details"><h3>🎨 CRÉATION GRAPHIQUE</h3><p>Canva expert (RODELLE, Land Creation & Raider Express).</p></div></div>
             <div class="attr-item"><div class="attr-details"><h3>🖌️ SUITE ADOBE</h3><p>Maîtrise Premiere Pro, Photoshop, Lightroom.</p></div></div>
-            <div class="attr-item"><div class="attr-details"><h3>📱 COMMUNITY MANAGEMENT</h3><p>Sourcing tendances TikTok/Reels & Micro-influence.</p></div></div>
-            <div class="attr-item"><div class="attr-details"><h3>💼 PACK OFFICE & G-SUITE</h3><p>Powerpoint, Excel, Google Docs, Gemini AI.</p></div></div>
+            <div class="attr-item"><div class="attr-details"><h3>📱 COMMUNITY MANAGEMENT</h3><p>Adaptation Trends, contact/sourcing influenceur, gestion communauté. Acquis via mes comptes persos et mon expérience chez RODELLE.</p></div></div>
+            <div class="attr-item"><div class="attr-details"><h3>💼 PACK OFFICE & G-SUITE</h3><p>Expert Pack office & Google Suite (Docs, Drive, Gemini).</p></div></div>
             <div class="attr-item"><div class="attr-details"><h3>🇪🇺 LANGUES</h3><p>Français, Anglais et Roumain (Trilingue).</p></div></div>
         </div>
     </div>
