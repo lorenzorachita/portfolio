@@ -13,12 +13,13 @@
         * { 
             margin: 0; padding: 0; box-sizing: border-box; 
             -webkit-font-smoothing: antialiased;
-            backface-visibility: hidden;
         }
         
-        .presentation-box, .timeline-item, .video-wrapper, .portrait-img, .attr-details, .floating-card {
-            will-change: transform;
-            transform: translateZ(0);
+        /* Forcer l'accélération matérielle sur les éléments complexes */
+        .presentation-box, .timeline-item, .video-wrapper, .portrait-img, .attr-details, .floating-card, .main-title span {
+            backface-visibility: hidden;
+            transform: translateZ(0); 
+            will-change: transform, opacity;
         }
 
         :root {
@@ -47,12 +48,13 @@
 
         html { scroll-behavior: smooth; }
 
-        /* --- ANCIEN CURSEUR & SPARKLES --- */
+        /* --- CURSEUR & SPARKLES OPTIMISÉS --- */
         #magic-cursor {
             position: fixed; width: 10px; height: 10px; background: #fff; border-radius: 50%;
             pointer-events: none; z-index: 10000; box-shadow: 0 0 15px #ff9f43, 0 0 30px #fff;
             transform: translate(-50%, -50%);
             left: -100px; top: -100px;
+            transition: transform 0.1s ease-out;
         }
         .sparkle {
             position: fixed; width: 4px; height: 4px; background: #fff; border-radius: 50%;
@@ -60,10 +62,9 @@
             animation: shoot 0.8s linear forwards;
         }
 
-
         @keyframes shoot { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0); opacity: 0; } }
 
-        /* --- ÉTOILES SCINTILLANTES CSS --- */
+        /* --- ÉTOILES SCINTILLANTES --- */
         .stars-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;
         }
@@ -79,7 +80,6 @@
         #scroll-progress {
             position: fixed; top: 0; left: 0; height: 4px; background: var(--primary); z-index: 2000; width: 0%;
         }
-
 
         /* --- NAVIGATION --- */
         nav { 
@@ -123,151 +123,83 @@
         }
 
         .hero-container { 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%; 
-            max-width: 1600px; /* Augmenté pour laisser plus de place */
-            margin: 0 auto;
-            position: relative; 
-            z-index: 2; 
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 1600px; margin: 0 auto;
+            position: relative; z-index: 2; 
             animation: fadeInUp 1.2s ease-out forwards;
         }
 
         .hero-left { 
-            flex: 1.6; 
-            z-index: 10;
-            padding-left: 0px; /* Décalé au max à gauche */
-            margin-left: -50px; /* Force le décalage à gauche */
+            flex: 1.6; z-index: 10;
+            margin-left: -50px; 
         }
 
-        .branding-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 20px; 
-        }
+        .branding-wrapper { position: relative; display: flex; align-items: center; gap: 20px; }
 
         .portrait-img { 
             width: 420px; height: auto; 
             transform: rotate(-8deg) translateY(40px);
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.8)); opacity: 0.95;
-            transition: 0.5s ease;
-            margin-right: -40px; 
-            z-index: 1;
-            filter: drop-shadow(0 0 20px rgba(108, 92, 231, 0.7)) 
-                    drop-shadow(0 15px 30px rgba(0,0,0,0.6));
+            opacity: 0.95; transition: 0.5s ease;
+            margin-right: -40px; z-index: 1;
+            filter: drop-shadow(0 0 20px rgba(108, 92, 231, 0.7)) drop-shadow(0 15px 30px rgba(0,0,0,0.6));
         }
         
-        /* --- TITRE --- */
-      .main-title {
-            font-size: clamp(2rem, 5.5vw, 4.8rem); /* Passé de 6.2rem à 4.8rem */
+        .main-title {
+            font-size: clamp(2rem, 5.5vw, 4.8rem);
             font-family: 'Bungee', cursive;
-            line-height: 1.05;
-            margin-bottom: 15px;
-            max-width: 900px;
-            position: relative;
-            z-index: 2;
-            color: white;
+            line-height: 1.05; margin-bottom: 15px; max-width: 900px;
+            position: relative; z-index: 2; color: white;
             filter: drop-shadow(0 0 8px rgba(108, 92, 231, 0.8));
         }
 
-.main-title span {
-    display: inline-block;
-    opacity: 0;
-    cursor: pointer;
-    margin-right: 15px;
-    /* On applique l'animation autoHoverZoom directement ici */
-    animation: autoHoverZoom 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.main-title span:hover {
-    transform: translateY(-5px) scale(1.15) !important;
-    filter: drop-shadow(0 0 15px var(--primary));
-}
-
-/* L'animation qui imite ton effet de survol au chargement */
-@keyframes autoHoverZoom {
-    0% {
-        opacity: 0;
-        transform: translateY(20px) scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-5px) scale(1.15); /* Le zoom "gonflement" */
-        filter: drop-shadow(0 0 15px var(--primary));
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1); /* Retour à la normale */
-        filter: drop-shadow(0 0 0px transparent);
-    }
-}
-
-/* Délais pour l'effet cascade (un mot après l'autre) */
-.main-title span:nth-child(1) { animation-delay: 0.3s; }
-.main-title span:nth-child(2) { animation-delay: 0.6s; }
-.main-title span:nth-child(3) { animation-delay: 0.9s; }
-.main-title span:nth-child(4) { animation-delay: 1.2s; }
-
-   .hero-description {
-            margin-top: 15px; 
-            font-size: 1.25rem; /* Passé de 1.6rem à 1.25rem */
-            line-height: 1.4; 
-            opacity: 0.9;
-            max-width: 700px; 
+        .main-title span {
+            display: inline-block; opacity: 0; cursor: pointer; margin-right: 15px;
+            animation: autoHoverZoom 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .hero-right { 
-            flex: 0.5; 
-            position: relative; 
-            height: 600px; /* Augmenté pour l'espace vertical */
-            perspective: 1000px;
+        .main-title span:hover {
+            transform: translateY(-5px) scale(1.15) !important;
+            filter: drop-shadow(0 0 15px var(--primary));
         }
+
+        @keyframes autoHoverZoom {
+            0% { opacity: 0; transform: translateY(20px) scale(1); }
+            50% { opacity: 1; transform: translateY(-5px) scale(1.15); filter: drop-shadow(0 0 15px var(--primary)); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: drop-shadow(0 0 0px transparent); }
+        }
+
+        .main-title span:nth-child(1) { animation-delay: 0.3s; }
+        .main-title span:nth-child(2) { animation-delay: 0.5s; }
+        .main-title span:nth-child(3) { animation-delay: 0.7s; }
+        .main-title span:nth-child(4) { animation-delay: 0.9s; }
+
+        .hero-description { margin-top: 15px; font-size: 1.25rem; line-height: 1.4; opacity: 0.9; max-width: 700px; }
+
+        .hero-right { flex: 0.5; position: relative; height: 600px; perspective: 1000px; }
         
         @keyframes floatEffect {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(1deg); }
         }
 
-        /* --- BLOCS DE TEXTE ACCUEIL --- */
-/* --- BLOCS DE TEXTE ACCUEIL --- */
-/* --- BLOCS DE TEXTE ACCUEIL AGRANDIS --- */
         .floating-card { 
-            position: absolute; 
-            background: rgba(26, 26, 46, 0.4); 
-            backdrop-filter: blur(15px); 
-            border: 2px solid var(--primary); 
-            box-shadow: 0 0 15px var(--glow-violet); 
-            padding: 25px; /* Augmenté pour plus d'espace interne */
-            border-radius: 20px; 
-            width: 350px; /* Augmenté de 320px à 350px */
-            z-index: 10; 
-            pointer-events: auto;
-            will-change: transform, box-shadow;
+            position: absolute; background: rgba(26, 26, 46, 0.4); 
+            backdrop-filter: blur(15px); border: 2px solid var(--primary); 
+            box-shadow: 0 0 15px var(--glow-violet); padding: 25px; 
+            border-radius: 20px; width: 350px; z-index: 10; 
             animation: floatEffect 7s ease-in-out infinite;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                        background 0.5s ease, 
-                        border-color 0.5s ease,
-                        box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .floating-card p {
-            font-size: 0.82rem;
-            line-height: 1.5;
-        }
-                
-        /* Positions ajustées pour éviter tout chevauchement */
+        .floating-card p { font-size: 0.82rem; line-height: 1.5; }
         .card-1 { top: -20px; right: 20px; } 
         .card-2 { top: 220px; right: -40px; animation-delay: -2s; }
         .card-3 { bottom: -20px; right: 60px; animation-delay: -4s; }
         
         .floating-card:hover { 
             transform: scale(1.08) translateY(-15px) !important;
-            background: rgba(255, 255, 255, 0.1); 
-            border-color: var(--primary); 
-            box-shadow: 0 40px 80px rgba(108, 92, 231, 0.3);
-            z-index: 20;
+            background: rgba(255, 255, 255, 0.1); border-color: var(--primary); 
+            box-shadow: 0 40px 80px rgba(108, 92, 231, 0.3); z-index: 20;
         }
 
         /* --- REST DU STYLE --- */
@@ -286,6 +218,7 @@
         .focus-card:hover .focus-content { transform: translateY(-10px); }
 
         .cv-skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 100px 10%; align-items: start; }
+        
         @media (max-width: 992px) { 
             .cv-skills-grid { grid-template-columns: 1fr; } 
             .hero-container { flex-direction: column; text-align: center; }
@@ -340,71 +273,37 @@
         .social-links a { color: white; font-size: 2.5rem; transition: 0.3s; cursor: none; }
         .social-links a:hover { transform: scale(1.3); color: var(--accent-orange); }
 
-        /* --- STYLES CONTACT --- */
         .copyable-info {
-            font-size: 1.3rem; 
-            font-weight: 700;
-            margin: 15px 0;
-            cursor: pointer;
-            transition: 0.3s;
-            position: relative;
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 10px;
+            font-size: 1.3rem; font-weight: 700; margin: 15px 0; cursor: pointer; transition: 0.3s;
+            position: relative; display: inline-block; padding: 5px 15px; border-radius: 10px;
         }
-        .copyable-info:hover {
-            color: var(--accent-orange);
-            background: rgba(255,255,255,0.1);
-            transform: scale(1.05);
-        }
+        .copyable-info:hover { color: var(--accent-orange); background: rgba(255,255,255,0.1); transform: scale(1.05); }
         .copy-tooltip {
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent-pink);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-family: 'Montserrat';
-            opacity: 0;
-            transition: 0.4s;
-            pointer-events: none;
-            white-space: nowrap;
+            position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%);
+            background: var(--accent-pink); color: white; padding: 4px 12px; border-radius: 20px;
+            font-size: 0.7rem; font-family: 'Montserrat'; opacity: 0; transition: 0.4s; pointer-events: none; white-space: nowrap;
         }
-        .copy-tooltip.show {
-            opacity: 1;
-            bottom: -35px;
-        }
+        .copy-tooltip.show { opacity: 1; bottom: -35px; }
 
-        /* --- ARCADE COASTER --- */
         .modal-game { 
             display: none; position: fixed; top: 50%; left: 50%; 
             transform: translate(-50%, -50%) scale(0.5); 
             background: var(--white); padding: 40px; border-radius: 25px; z-index: 4000; width: 90%; max-width: 500px; text-align: center; border: 4px solid var(--primary); box-shadow: 0 0 100px rgba(0,0,0,0.8); 
-            opacity: 0; 
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+            opacity: 0; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
         }
         .modal-game.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
         
         #gameButtons button {
             padding: 12px 25px; margin: 8px; background: var(--primary); color: white; border: none; border-radius: 12px;
-            font-weight: 700; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: none;
+            font-weight: 700; transition: 0.3s; cursor: none;
         }
-        #gameButtons button:hover {
-            transform: scale(1.1) translateY(-3px);
-            background: var(--accent-pink);
-            box-shadow: 0 10px 20px rgba(255, 0, 234, 0.3);
-        }
+        #gameButtons button:hover { transform: scale(1.1) translateY(-3px); background: var(--accent-pink); box-shadow: 0 10px 20px rgba(255, 0, 234, 0.3); }
 
-        .close-arcade-btn {
-            display: inline-block; margin-top: 25px; padding: 8px 20px; background: rgba(0,0,0,0.05); border-radius: 50px; font-size: 0.8rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; cursor: none;
-        }
+        .close-arcade-btn { display: inline-block; margin-top: 25px; padding: 8px 20px; background: rgba(0,0,0,0.05); border-radius: 50px; font-size: 0.8rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; cursor: none; }
         .close-arcade-btn:hover { background: #ff4757; color: white; transform: scale(1.05); }
 
-        [data-reveal] { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        [data-reveal].visible { opacity: 1; transform: translateY(0); }
+        [data-reveal] { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .visible { opacity: 1; transform: translateY(0); }
 
         .easter-egg-trigger { position: fixed; bottom: 110px; right: 30px; width: 50px; height: 50px; background: gold; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000; cursor: none; animation: bounce 2s infinite; }
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} }
@@ -448,12 +347,12 @@
             <div class="branding-wrapper">
                 <img src="photo-lorenzo.png" alt="Lorenzo" class="portrait-img">
                 <div>
-                   <h1 class="main-title">
-    <span>LET'S</span> 
-    <span>MAKE</span> 
-    <span style="margin-right: 25px;">IT</span> 
-    <span>VIRAL !</span>
-</h1>
+                    <h1 class="main-title">
+                        <span>LET'S</span> 
+                        <span>MAKE</span> 
+                        <span style="margin-right: 25px;">IT</span> 
+                        <span>VIRAL !</span>
+                    </h1>
                     <p class="hero-description">
                         Je recherche un <strong>stage</strong> d'au moins <strong>3 mois</strong> & une <strong>alternance</strong> 
                         en Communication et/ou Marketing ! :)
@@ -545,13 +444,12 @@
                 <i class="fas fa-paint-brush"></i>
                 <h3>Land Creation</h3>
                 <div class="focus-desc">
-             <p style="font-size: 0.85rem; line-height: 1.5; padding: 0 15px; text-align: center;">
-    <strong>Première asso</strong> (15 ans).<br>
-    <strong>DA & Production</strong> intégrale : logo et assets vidéo.<br><br>
-    
-    <strong>Stratégie UGC</strong> performante <strong>(+350 vidéos, +35k vues)</strong> et animation d'une communauté de 
-    <strong>1000 membres</strong> avec gestion de <strong>Giveaways</strong> partenaires.
-</p>
+                    <p style="font-size: 0.85rem; line-height: 1.5; padding: 0 15px; text-align: center;">
+                        <strong>Première asso</strong> (15 ans).<br>
+                        <strong>DA & Production</strong> intégrale : logo et assets vidéo.<br><br>
+                        <strong>Stratégie UGC</strong> performante <strong>(+350 vidéos, +35k vues)</strong> et animation d'une communauté de 
+                        <strong>1000 membres</strong> avec gestion de <strong>Giveaways</strong> partenaires.
+                    </p>
                 </div>
             </div>
         </div>
@@ -561,12 +459,10 @@
                 <h3>Phosea Esport</h3>
                 <div class="focus-desc">
                     <p style="font-size: 0.85rem; line-height: 1.5; padding: 0 15px; text-align: center;">
-    <strong>Association événementielle</strong> basée à Marseille.<br><br>
-    
-    <strong>Organisation & Logistique :</strong> Réalisation d'événements compétitifs en <strong>présentiel</strong> (multigaming).<br><br>
-    
-    <strong>Succès opérationnel :</strong> Premier événement <strong>complet</strong> (50 participants).
-</p>
+                        <strong>Association événementielle</strong> basée à Marseille.<br><br>
+                        <strong>Organisation & Logistique :</strong> Réalisation d'événements compétitifs en <strong>présentiel</strong> (multigaming).<br><br>
+                        <strong>Succès opérationnel :</strong> Premier événement <strong>complet</strong> (50 participants).
+                    </p>
                 </div>
             </div>
         </div>
@@ -576,12 +472,10 @@
                 <h3>Raider Express</h3>
                 <div class="focus-desc">
                     <p style="font-size: 0.85rem; line-height: 1.5; padding: 0 15px; text-align: center;">
-    <strong>Auto-entreprise</strong> dédiée à la création de contenu.<br><br>
-    
-    <strong>Concept & Tech :</strong> Capturer mon quotidien en <strong>POV immersif</strong>.<br><br>
-    
-    <strong>Objectif :</strong> Développer un média basé sur l'<strong>interaction humaine</strong> pour m'aider à financer mon parcours académique.
-</p>
+                        <strong>Auto-entreprise</strong> dédiée à la création de contenu.<br><br>
+                        <strong>Concept & Tech :</strong> Capturer mon quotidien en <strong>POV immersif</strong>.<br><br>
+                        <strong>Objectif :</strong> Développer un média basé sur l'<strong>interaction humaine</strong> pour m'aider à financer mon parcours académique.
+                    </p>
                 </div>
             </div>
         </div>
@@ -590,11 +484,10 @@
                 <i class="fas fa-chart-line"></i>
                 <h3>Créateur de Contenu</h3>
                 <div class="focus-desc">
-                    <p style="font-size: 0.85rem; line-height: 1.5; padding: 0 15px; text-align: center;">    
-    <strong>Performance chiffrée :</strong> Plus de <strong>17 000 abonnés cumulés</strong> sur TikTok et des <strong>millions de vues</strong> générées sur deux comptes distincts.<br><br>
-    
-    <strong>Savoir-faire :</strong> Maîtrise des algorithmes, de la <strong>viralité</strong> et du storytelling vidéo depuis 10 ans. Capacité à bâtir des communautés à partir de zéro.
-</p>
+                    <p style="font-size: 0.85rem; line-height: 1.5; padding: 0 15px; text-align: center;">
+                        <strong>Performance chiffrée :</strong> Plus de <strong>17 000 abonnés cumulés</strong> sur TikTok et des <strong>millions de vues</strong> générées sur deux comptes distincts.<br><br>
+                        <strong>Savoir-faire :</strong> Maîtrise des algorithmes, de la <strong>viralité</strong> et du storytelling vidéo depuis 10 ans. Capacité à bâtir des communautés à partir de zéro.
+                    </p>
                 </div>
             </div>
         </div>
@@ -642,7 +535,6 @@
                 <a href="https://www.instagram.com/lorenzofpv13/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.tiktok.com/@lorenzofpv13" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
             </div>
-            
             <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
                 <div class="copyable-info" onclick="copyToClipboard('lorenzorakita@gmail.com', this)">
                     <i class="fas fa-envelope"></i> lorenzorakita@gmail.com
@@ -662,54 +554,56 @@
 </footer>
 
 <script>
-    // --- CURSEUR AVEC ÉTINCELLES ---
+    // --- OPTIMISATION DU RENDU (RequestAnimationFrame) ---
     const cursor = document.getElementById('magic-cursor');
+    let lastSparkleTime = 0;
+
     document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px'; 
-        cursor.style.top = e.clientY + 'px';
+        // Déplacer le curseur de manière fluide
+        window.requestAnimationFrame(() => {
+            cursor.style.left = e.clientX + 'px'; 
+            cursor.style.top = e.clientY + 'px';
+        });
         
-        const sparkle = document.createElement('div');
-        sparkle.className = 'sparkle'; 
-        sparkle.style.left = e.clientX + 'px'; 
-        sparkle.style.top = e.clientY + 'px';
-        document.body.appendChild(sparkle); 
-        setTimeout(() => sparkle.remove(), 800);
+        // Limiter la création d'étincelles (Throttle) pour éviter de saturer le DOM
+        const now = Date.now();
+        if (now - lastSparkleTime > 50) { 
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle'; 
+            sparkle.style.left = e.clientX + 'px'; 
+            sparkle.style.top = e.clientY + 'px';
+            document.body.appendChild(sparkle); 
+            setTimeout(() => sparkle.remove(), 800);
+            lastSparkleTime = now;
+        }
     });
 
-    // --- COPIE PRESSE-PAPIER ---
     function copyToClipboard(text, element) {
         navigator.clipboard.writeText(text).then(() => {
             const tooltip = element.querySelector('.copy-tooltip');
             tooltip.classList.add('show');
-            setTimeout(() => {
-                tooltip.classList.remove('show');
-            }, 2000);
+            setTimeout(() => tooltip.classList.remove('show'), 2000);
         });
     }
 
-    // --- ÉTOILES ARRIÈRE-PLAN ---
+    // Étoiles CSS
     const starContainer = document.getElementById('stars-css-container');
-    for(let i=0; i<60; i++) {
+    for(let i=0; i<50; i++) {
         const star = document.createElement('div');
         star.className = 'star-css';
         star.style.left = Math.random() * 100 + '%';
         star.style.top = Math.random() * 100 + '%';
-        const size = Math.random() * 3 + 1 + 'px';
+        const size = Math.random() * 2 + 1 + 'px';
         star.style.width = size; star.style.height = size;
         star.style.setProperty('--d', (Math.random() * 3 + 2) + 's');
         starContainer.appendChild(star);
     }
 
-    // --- TYPING EFFECT ---
+    // Typing Effect
     const sequence = [
-        "On va : rendre ça viral ?",
-        "On va : bosser ensemble ?",
-        "On va : casser les codes ?",
-        "Prêt à : rendre ça viral ?",
-        "Prêt à : bosser ensemble ?",
-        "Prêt à : casser les codes ?"
+        "On va : rendre ça viral ?", "On va : bosser ensemble ?", "On va : casser les codes ?",
+        "Prêt à : rendre ça viral ?", "Prêt à : bosser ensemble ?", "Prêt à : casser les codes ?"
     ];
-
     async function typeEffect() {
         const suffEl = document.getElementById('typing-text');
         if(!suffEl) return;
@@ -731,17 +625,16 @@
     }
     typeEffect();
 
-    // --- CANVAS HEADER STARFIELD ---
+    // Canvas Header (Optimisé : suppression du shadowBlur)
     const canvasH = document.getElementById('starfield-header');
     const ctxH = canvasH.getContext('2d');
     let starsH = [];
     function initStars() {
-        canvasH.width = window.innerWidth; 
-        canvasH.height = window.innerHeight;
-        starsH = Array.from({length: 60}, () => ({
+        canvasH.width = window.innerWidth; canvasH.height = window.innerHeight;
+        starsH = Array.from({length: 50}, () => ({
             x: Math.random() * canvasH.width, y: Math.random() * canvasH.height,
             size: Math.random() * 2 + 1, opacity: Math.random(),
-            speed: Math.random() * 0.02 + 0.005, glow: Math.random() * 15 + 5
+            speed: Math.random() * 0.01 + 0.005
         }));
     }
     window.addEventListener('resize', initStars); initStars();
@@ -749,15 +642,14 @@
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         starsH.forEach(s => {
             s.opacity += s.speed; if (s.opacity > 1 || s.opacity < 0.1) s.speed *= -1;
-            ctxH.save(); ctxH.shadowBlur = s.glow * s.opacity; ctxH.shadowColor = "rgba(108, 92, 231, 0.8)";
-            ctxH.fillStyle = `rgba(255, 255, 255, ${s.opacity})`; ctxH.beginPath();
-            ctxH.arc(s.x, s.y, s.size, 0, Math.PI * 2); ctxH.fill(); ctxH.restore();
+            ctxH.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
+            ctxH.beginPath(); ctxH.arc(s.x, s.y, s.size, 0, Math.PI * 2); ctxH.fill();
         });
         requestAnimationFrame(drawStars);
     }
     drawStars();
 
-    // --- INTERSECTION OBSERVER & COASTER ANIMATION ---
+    // Reveal Logic
     document.addEventListener("DOMContentLoaded", () => {
         const train = document.getElementById('coasterTrain');
         const items = document.querySelectorAll('.attr-item');
@@ -766,9 +658,7 @@
                 if(e.isIntersecting) {
                     e.target.classList.add('visible');
                     if(e.target.id === 'backstage') {
-                        items.forEach((item, i) => {
-                            setTimeout(() => item.classList.add('reveal'), i * 300);
-                        });
+                        items.forEach((item, i) => setTimeout(() => item.classList.add('reveal'), i * 200));
                     }
                 }
             });
@@ -782,50 +672,41 @@
                 train.style.top = (targetTop + (targetHeight / 2) - 35) + "px";
             });
         });
-        setTimeout(() => document.querySelector('.main-title').classList.add('reveal-ready'), 300);
     });
 
-    // --- MODALS & GAME ---
+    // Modals
     function openGame() { 
         const game = document.getElementById('gameBox');
-        game.style.display = 'block';
-        setTimeout(() => game.classList.add('active'), 10);
+        game.style.display = 'block'; setTimeout(() => game.classList.add('active'), 10);
     }
     function closeGame() { 
         const game = document.getElementById('gameBox');
-        game.classList.remove('active'); 
-        setTimeout(() => game.style.display = 'none', 600);
-        document.getElementById('gameResult').style.opacity = "0";
+        game.classList.remove('active'); setTimeout(() => game.style.display = 'none', 600);
     }
-    
     function checkAns(btn, is) {
         const r = document.getElementById('gameResult');
         r.innerHTML = is ? "✅ VRAI ! 300 minutes (5h) d'attente : c'est le temps qu'il a fallu aux plus courageux pour aider Némo à retrouver son chemin ! 🐢" : "❌ Pas tout à fait...";
         r.style.color = is ? "var(--primary)" : "var(--accent-pink)";
         r.style.opacity = "1";
-        r.style.transform = "translateY(0)";
         if(!is) {
             btn.style.transform = "translateX(5px)";
-            setTimeout(() => btn.style.transform = "translateX(-5px)", 50);
             setTimeout(() => btn.style.transform = "translateX(0)", 100);
         }
     }
-    
     document.getElementById('cvTrigger').onclick = () => {
         const modal = document.getElementById('cv-modal');
-        modal.style.display = 'flex';
-        setTimeout(() => modal.classList.add('active'), 10);
+        modal.style.display = 'flex'; setTimeout(() => modal.classList.add('active'), 10);
     };
-
     function closeCV() {
         const modal = document.getElementById('cv-modal');
-        modal.classList.remove('active');
-        setTimeout(() => { modal.style.display = 'none'; }, 600);
+        modal.classList.remove('active'); setTimeout(() => modal.style.display = 'none', 600);
     }
-
     function closeCVOnOutside(e) { if(e.target.id === 'cv-modal') closeCV(); }
 
-    window.onscroll = () => document.getElementById("scroll-progress").style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100 + "%";
+    window.onscroll = () => {
+        const progress = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        document.getElementById("scroll-progress").style.width = progress + "%";
+    }
 </script>
 </body>
 </html>
